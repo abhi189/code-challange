@@ -1,0 +1,21 @@
+<section class="container enrollees-container">
+    <h1>Enrollees</h1>
+    <div *ngIf="loadingEnrollees">
+        loading ...
+    </div>
+    <div *ngIf="!loadingEnrollees" class="flex flex-column enrollees-list">
+        <div *ngFor="let enrollee of enrollees; index as i"
+            class="card"
+            (click)="handleEnrolleeClick(enrollee)"
+        >
+            <div class="card-body" [ngClass]="{'active': enrollee.active}">
+                <div class="id">ID: {{enrollee.id}}</div>
+                <div class="name">Name: {{enrollee.name}}</div>
+                <div class="status">activation Status: <span [ngClass]="{'active': enrollee.active}">{{enrollee.active ? 'Active' : 'In-active'}}</span></div>
+                <div *ngIf="enrollee.dateOfBirth">
+                    DOB - {{enrollee.dateOfBirth}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

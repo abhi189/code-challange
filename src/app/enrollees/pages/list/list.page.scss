@@ -1,0 +1,50 @@
+.enrollees-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    .enrollees-list {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .card {
+            display: flex;
+            padding: 4px;
+            margin: 8px 0;
+            flex-direction: column;
+            flex: 1 0 268px;
+            &-body {
+                padding: 8px;
+                background: white;
+                border-radius: 4px;
+                cursor: pointer;
+                flex: 1;
+                border-bottom: 4px solid red;
+                transition: 250ms all;
+                &.active {
+                    border-bottom: 4px solid #009688;
+                }
+                &:hover {
+                    &.active {
+                        box-shadow: 2px 4px 16px 0px #009688;
+                    }
+                    &:not(.active) {
+                        box-shadow: 2px 4px 16px 0px red ;
+                    }
+                }
+                .btn-edit {
+                    border-radius: 4px;
+                    display: inline-block;
+                    padding: 2px 4px;
+                    font-size: 10px;
+                }
+                .status {
+                    span {
+                        &.active {
+                            color: #009688;
+                        }
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+}

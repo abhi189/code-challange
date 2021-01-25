@@ -1,0 +1,46 @@
+<section class="container flex enrollee-container">
+    <div class="flex justify-between header">
+        <button (click)="handleBackClick()" class="back">back</button>
+        <h1>Enrollee details</h1>
+        <button (click)="handleEditClick()" class="edit">Edit</button>
+    </div>
+    <div *ngIf="loadingEnrollee">
+        loading ...
+    </div>
+    <form *ngIf="!loadingEnrollee" #enrollee="ngForm" (ngSubmit)="update(enrollee)" class="form enrollee-details" novalidate>
+        <div class="form-group">
+            <label>ID:  </label>
+            <div>{{enrolleeDetails.id}}</div>
+            <input type="hidden" name="id" [ngModel]="enrolleeDetails.id" required #id="ngModel" name="id">
+        </div>
+        <div class="form-group">
+            <label>Name:  </label>
+            <div *ngIf="!editEnabled">{{enrolleeDetails.name}}</div>
+            <input *ngIf="editEnabled" [ngModel]="enrolleeDetails.name" required #name="ngModel" name="name">
+        </div>
+        <div class="form-group">
+            <label>Activation Status:</label>
+            <div *ngIf="!editEnabled">{{enrolleeDetails.active ? 'active' : 'inactive'}}</div>
+            <div *ngIf="editEnabled" class="flex">
+                <div class="">
+                    <input type="radio" value="active" id="active" name="active" [ngModel]="enrolleeDetails.active" required #active="ngModel">
+                    <label class="custom-control-label" for="active">Active</label>
+                 </div>
+              
+                 <div class="">
+                    <input type="radio" value="in-active" id="in-active" name="active" [ngModel]="enrolleeDetails.active" required #active="ngModel">
+                    <label class="custom-control-label" for="in-active">In Active</label>
+                 </div>
+            </div>
+        </div>
+        <div *ngIf="enrolleeDetails.dateOfBirth" class="form-group">
+            <label>Date of Birth:  </label>
+            <div>{{enrolleeDetails.dateOfBirth}}</div>
+            <input type="hidden" [ngModel]="enrolleeDetails.dateOfBirth" required #dateOfBirth="ngModel" name="dateOfBirth">
+        </div>    
+        <div *ngIf="editEnabled">
+            <button (click)="editEnabled = false" type="button" class="btn btn-primary">cancel</button>
+            <button type="submit" class="btn btn-success">update</button>
+        </div>
+    </form>
+</section>
